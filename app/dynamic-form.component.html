@@ -1,0 +1,27 @@
+<div>
+  <form (ngSubmit)="onSubmit()" [ngFormModel]="form">
+      <button type="button" (click)="addRule()">Add Rule</button>
+    <div *ngFor="let question of questions" class="form-row">
+      <df-question [question]="question" [form]="form"></df-question>
+        <button type="button" (click)="deleteRule(question)">Delete</button>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+
+    {{selectedQ | json }}
+
+</div>
+
+
+<!-- 
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
