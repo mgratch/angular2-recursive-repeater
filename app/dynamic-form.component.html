@@ -1,14 +1,24 @@
 <div>
   <form (ngSubmit)="onSubmit()" [ngFormModel]="form">
-      <button type="button" (click)="addRule()">Add Rule</button>
-    <div *ngFor="let question of questions" class="form-row">
-      <df-question [question]="question" [form]="form"></df-question>
-        <button type="button" (click)="deleteRule(question)">Delete</button>
-    </div>
-
-    <div class="form-row">
-      <button type="submit" [disabled]="!form.valid">Save</button>
-    </div>
+      <table>
+          <thead>
+          This is a description
+          <button type="button" (click)="addRule()">Add Rule</button>
+          </thead>
+          <tbody>
+              <tr>
+                  <td *ngFor="let question of questions" class="form-row">
+                      <df-question [question]="question" [form]="form"></df-question>
+                      <div *ngIf="question.key == 'limit'">
+                          <button type="button" (click)="deleteRule(question)">Delete</button>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+          <tfoot>
+          <button type="submit" [disabled]="!form.valid">Save</button>
+          </tfoot>
+      </table>
   </form>
 
   <div *ngIf="payLoad" class="form-row">

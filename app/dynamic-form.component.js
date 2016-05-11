@@ -23,7 +23,7 @@ var DynamicForm = (function () {
         this.form = this.qcs.toControlGroup(this.questions);
     };
     DynamicForm.prototype.addRule = function () {
-        //this.qcs.toControlGroup(this.questions);
+        console.log(this.form);
         this.questions.push(new question_dropdown_1.DropdownQuestion({
             key: 'limit_by',
             label: 'Rule Type',
@@ -45,10 +45,10 @@ var DynamicForm = (function () {
             required: true,
             order: 2
         }));
-        console.log(this.questions);
+        //this.form = this.qcs.toControlGroup(this.questions);
     };
     DynamicForm.prototype.deleteRule = function (q) {
-        this.questions.splice(this.questions.indexOf(q), 1);
+        this.questions.splice(this.questions.indexOf(q) - 1, 2);
     };
     DynamicForm.prototype.onSelect = function (q) {
         this.selectedQ = q;

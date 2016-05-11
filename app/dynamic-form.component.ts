@@ -28,7 +28,7 @@ export class DynamicForm {
     }
 
     addRule() {
-        //this.qcs.toControlGroup(this.questions);
+        console.log(this.form);
         this.questions.push(
             new DropdownQuestion({
                 key:'limit_by',
@@ -53,11 +53,11 @@ export class DynamicForm {
                 order: 2
             })
         );
-        console.log(this.questions);
+        //this.form = this.qcs.toControlGroup(this.questions);
     }
 
     deleteRule(q:QuestionBase<any>) {
-        this.questions.splice(this.questions.indexOf(q), 1);
+        this.questions.splice(this.questions.indexOf(q) - 1, 2);
     }
 
     onSelect(q:QuestionBase<any>) {

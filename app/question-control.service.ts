@@ -7,11 +7,17 @@ export class QuestionControlService {
   constructor(private fb:FormBuilder){ }
 
   toControlGroup(questions:QuestionBase<any>[] ) {
-    let group = {};
+    let group = [];
 
-    questions.forEach(question => {
-      group[question.key] = question.required ? [question.value || '', Validators.required] : [];
-    });
-    return this.fb.group(group);
+      for ( var i = 0, ii = 0; i < questions.length; i++){
+          if (i % 2 == 0){
+              ii++;
+          }
+          questions.forEach(question => {
+              group[ii][question.key] = question.required ? [question.value || '', Validators.required] : [];
+          });
+      }
+      console.log(group);
+      return this.fb.group(group);
   }
 }
