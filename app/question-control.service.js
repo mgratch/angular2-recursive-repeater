@@ -16,15 +16,9 @@ var QuestionControlService = (function () {
     }
     QuestionControlService.prototype.toControlGroup = function (questions) {
         var group = {};
-        for (var i = 0, ii = 0; i < questions.length; i++) {
-            if (i != 0 && i % 2 == 0) {
-                ii++;
-            }
-            questions.forEach(function (question) {
-                console.log('this: ' + ii);
-                group[ii][question.key] = question.required ? [question.value || '', common_1.Validators.required] : [];
-            });
-        }
+        questions.forEach(function (question) {
+            group[question.key] = question.required ? [question.value || '', common_1.Validators.required] : [];
+        });
         return this.fb.group(group);
     };
     QuestionControlService = __decorate([

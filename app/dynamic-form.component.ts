@@ -1,10 +1,10 @@
 import {Component, Input} from "@angular/core";
-import {ControlGroup} from "@angular/common";
+import {ControlGroup, ControlArray, FormBuilder} from "@angular/common";
 import {QuestionBase} from "./question-base";
 import {QuestionControlService} from "./question-control.service";
 import {DynamicFormQuestionComponent} from "./dynamic-form-question.component";
-import {DropdownQuestion} from "./question-dropdown";
 import {TextboxQuestion} from "./question-textbox";
+import {DropdownQuestion} from "./question-dropdown";
 
 @Component({
     selector: 'dynamic-form',
@@ -16,15 +16,21 @@ export class DynamicForm {
 
     @Input()
     questions:QuestionBase<any>[] = [];
-    form:ControlGroup;
-    payLoad = '';
     selectedQ:QuestionBase<any>;
+    ruleControlGroups:ControlGroup[] = [];
+    rules:ControlArray = new ControlArray(this.ruleControlGroups);
+    payLoad = '';
+    form:ControlGroup;
 
-    constructor(private qcs:QuestionControlService) {
+    constructor(private qcs:QuestionControlService,
+                private fb:FormBuilder) {
     }
 
     ngOnInit() {
-        this.form = this.qcs.toControlGroup(this.questions);
+        var group = this.qcs.toControlGroup(this.questions);
+        this.rules.push(group);
+        this.form = this.fb.group({"rules":this.rules});
+        console.log('form2:', this.form);
     }
 
     addRule() {
@@ -53,7 +59,9 @@ export class DynamicForm {
                 order: 2
             })
         );
-        //this.form = this.qcs.toControlGroup(this.questions);
+        var group = this.qcs.toControlGroup(this.questions);
+        this.rules.push(group);
+        console.log(this.rules);
     }
 
     deleteRule(q:QuestionBase<any>) {

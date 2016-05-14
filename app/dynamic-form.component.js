@@ -9,18 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var common_1 = require("@angular/common");
 var question_control_service_1 = require("./question-control.service");
 var dynamic_form_question_component_1 = require("./dynamic-form-question.component");
-var question_dropdown_1 = require("./question-dropdown");
 var question_textbox_1 = require("./question-textbox");
+var question_dropdown_1 = require("./question-dropdown");
 var DynamicForm = (function () {
-    function DynamicForm(qcs) {
+    function DynamicForm(qcs, fb) {
         this.qcs = qcs;
+        this.fb = fb;
         this.questions = [];
+        this.ruleControlGroups = [];
+        this.rules = new common_1.ControlArray(this.ruleControlGroups);
         this.payLoad = '';
     }
     DynamicForm.prototype.ngOnInit = function () {
-        this.form = this.qcs.toControlGroup(this.questions);
+        var group = this.qcs.toControlGroup(this.questions);
+        this.rules.push(group);
+        this.form = this.fb.group({ "rules": this.rules });
+        console.log('form2:', this.form);
     };
     DynamicForm.prototype.addRule = function () {
         console.log(this.form);
@@ -45,7 +52,9 @@ var DynamicForm = (function () {
             required: true,
             order: 2
         }));
-        //this.form = this.qcs.toControlGroup(this.questions);
+        var group = this.qcs.toControlGroup(this.questions);
+        this.rules.push(group);
+        console.log(this.rules);
     };
     DynamicForm.prototype.deleteRule = function (q) {
         this.questions.splice(this.questions.indexOf(q) - 1, 2);
@@ -67,7 +76,7 @@ var DynamicForm = (function () {
             directives: [dynamic_form_question_component_1.DynamicFormQuestionComponent],
             providers: [question_control_service_1.QuestionControlService]
         }), 
-        __metadata('design:paramtypes', [question_control_service_1.QuestionControlService])
+        __metadata('design:paramtypes', [question_control_service_1.QuestionControlService, common_1.FormBuilder])
     ], DynamicForm);
     return DynamicForm;
 }());

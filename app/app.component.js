@@ -8,12 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var dynamic_form_component_1 = require('./dynamic-form.component');
-var question_service_1 = require('./question.service');
+var core_1 = require("@angular/core");
+var dynamic_form_component_1 = require("./dynamic-form.component");
+var question_service_1 = require("./question.service");
 var AppComponent = (function () {
     function AppComponent(service) {
         this.questions = service.getQuestions();
+        console.log('questions:', this.questions);
     }
     AppComponent = __decorate([
         core_1.Component({

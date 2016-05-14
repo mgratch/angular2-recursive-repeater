@@ -4,6 +4,44 @@
           <thead>
           This is a description
           <button type="button" (click)="addRule()">Add Rule</button>
+
+
+
+
+
+
+
+          <br>
+          <pre>
+              {{questions | json}}
+          </pre>
+          <br>
+          <br>
+          <pre>
+              {{selectedQ | json}}
+          </pre>
+          <br>
+          <br>
+          <pre>
+              {{ruleControlGroups | json}}
+          </pre>
+          <br>
+          <br>
+          <pre>
+              {{rules | json}}
+          </pre>
+          <br>
+          <br>
+          <pre>
+              {{payLoad | json}}
+          </pre>
+          <br>
+          <br>
+          <pre>
+              {{form | json}}
+          </pre>
+          <br>
+
           </thead>
           <tbody>
               <tr>
@@ -16,7 +54,7 @@
               </tr>
           </tbody>
           <tfoot>
-          <button type="submit" [disabled]="!form.valid">Save</button>
+          <button type="submit">Save</button>
           </tfoot>
       </table>
   </form>

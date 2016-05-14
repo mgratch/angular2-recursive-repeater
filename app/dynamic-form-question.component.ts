@@ -12,7 +12,4 @@ export class DynamicFormQuestionComponent {
     @Input()
     form:ControlGroup;
 
-    get isValid() {
-        return this.form.controls[this.question.key].valid;
-    }
 }
