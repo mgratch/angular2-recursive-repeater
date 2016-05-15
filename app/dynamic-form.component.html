@@ -1,56 +1,19 @@
 <div>
   <form (ngSubmit)="onSubmit()" [ngFormModel]="form">
+      {{questions | json}}
       <table>
           <thead>
           This is a description
           <button type="button" (click)="addRule()">Add Rule</button>
-
-
-
-
-
-
-
-          <br>
-          <pre>
-              {{questions | json}}
-          </pre>
-          <br>
-          <br>
-          <pre>
-              {{selectedQ | json}}
-          </pre>
-          <br>
-          <br>
-          <pre>
-              {{ruleControlGroups | json}}
-          </pre>
-          <br>
-          <br>
-          <pre>
-              {{rules | json}}
-          </pre>
-          <br>
-          <br>
-          <pre>
-              {{payLoad | json}}
-          </pre>
-          <br>
-          <br>
-          <pre>
-              {{form | json}}
-          </pre>
-          <br>
-
           </thead>
           <tbody>
-              <tr>
-                  <td *ngFor="let question of questions" class="form-row">
-                      <df-question [question]="question" [form]="form"></df-question>
-                      <div *ngIf="question.key == 'limit'">
-                          <button type="button" (click)="deleteRule(question)">Delete</button>
-                      </div>
-                  </td>
+              <!-- <pre>{{questions | json}}</pre> -->
+              <tr *ngFor="let question of questions" class="form-row">
+                  {{question | json}}
+                  <df-question [question]="question" [form]="form"></df-question>
+                  <div *ngIf="question.key == 'limit'">
+                      <button type="button" (click)="deleteRule(question)">Delete</button>
+                  </div>
               </tr>
           </tbody>
           <tfoot>

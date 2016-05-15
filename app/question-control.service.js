@@ -16,6 +16,7 @@ var QuestionControlService = (function () {
     }
     QuestionControlService.prototype.toControlGroup = function (questions) {
         var group = {};
+        console.log(questions.length);
         questions.forEach(function (question) {
             group[question.key] = question.required ? [question.value || '', common_1.Validators.required] : [];
         });

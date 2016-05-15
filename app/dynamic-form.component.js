@@ -19,14 +19,14 @@ var DynamicForm = (function () {
         this.qcs = qcs;
         this.fb = fb;
         this.questions = [];
-        this.ruleControlGroups = [];
-        this.rules = new common_1.ControlArray(this.ruleControlGroups);
         this.payLoad = '';
     }
     DynamicForm.prototype.ngOnInit = function () {
         var group = this.qcs.toControlGroup(this.questions);
-        this.rules.push(group);
-        this.form = this.fb.group({ "rules": this.rules });
+        //console.log("group: ", group);
+        this.rules = new common_1.ControlArray([group]);
+        //console.log("rules: ", this.rules);
+        this.form = new common_1.ControlGroup({ 'rules': this.rules });
         console.log('form2:', this.form);
     };
     DynamicForm.prototype.addRule = function () {

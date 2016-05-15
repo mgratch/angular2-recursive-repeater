@@ -14,6 +14,14 @@ var question_base_1 = require("./question-base");
 var DynamicFormQuestionComponent = (function () {
     function DynamicFormQuestionComponent() {
     }
+    Object.defineProperty(DynamicFormQuestionComponent.prototype, "isValid", {
+        get: function () {
+            console.log(this.form.controls[this.question.key]);
+            return this.form.controls[this.question.key].valid;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         core_1.Input(), 
         __metadata('design:type', question_base_1.QuestionBase)

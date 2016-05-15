@@ -13,7 +13,8 @@ var dynamic_form_component_1 = require("./dynamic-form.component");
 var question_service_1 = require("./question.service");
 var AppComponent = (function () {
     function AppComponent(service) {
-        this.questions = service.getQuestions();
+        this.questions = [];
+        this.questions.push(service.getQuestions());
         console.log('questions:', this.questions);
     }
     AppComponent = __decorate([

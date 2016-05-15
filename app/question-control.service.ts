@@ -9,9 +9,12 @@ export class QuestionControlService {
     toControlGroup(questions:QuestionBase<any>[] ) {
         let group = {};
 
+        console.log(questions.length);
+
         questions.forEach(question => {
             group[question.key] = question.required ? [question.value || '', Validators.required] : [];
         });
+
         return this.fb.group(group);
     }
 }

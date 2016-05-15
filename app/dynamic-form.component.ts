@@ -17,8 +17,8 @@ export class DynamicForm {
     @Input()
     questions:QuestionBase<any>[] = [];
     selectedQ:QuestionBase<any>;
-    ruleControlGroups:ControlGroup[] = [];
-    rules:ControlArray = new ControlArray(this.ruleControlGroups);
+    ruleControlGroups:ControlGroup;
+    rules:ControlArray;
     payLoad = '';
     form:ControlGroup;
 
@@ -28,8 +28,10 @@ export class DynamicForm {
 
     ngOnInit() {
         var group = this.qcs.toControlGroup(this.questions);
-        this.rules.push(group);
-        this.form = this.fb.group({"rules":this.rules});
+        //console.log("group: ", group);
+        this.rules = new ControlArray([group]);
+        //console.log("rules: ", this.rules);
+        this.form = new ControlGroup({'rules':this.rules});
         console.log('form2:', this.form);
     }
 

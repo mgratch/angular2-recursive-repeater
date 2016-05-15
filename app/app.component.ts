@@ -15,10 +15,10 @@ import {QuestionService} from "./question.service";
 })
 export class AppComponent {
 
-    questions:any[];
+    questions:any[] = [];
 
     constructor(service:QuestionService) {
-        this.questions = service.getQuestions();
+        this.questions.push(service.getQuestions());
         console.log('questions:', this.questions);
     }
 }
